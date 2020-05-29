@@ -26,5 +26,3 @@ EFUSE          = fd
 LOCK           = 2f
 
 include avrlib/makefile.mk
-
-include $(DEP_FILE)

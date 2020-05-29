@@ -13,11 +13,15 @@
  
 include module_tester/makefile
 
-FIRMWARE      = $(BUILD_DIR)module_tester.hex
-BOOTLOADER    = $(BUILD_ROOT)module_tester_bootloader/module_tester_bootloader.hex
+FIRMWARE      = $(BUILD_ROOT)module_tester.hex
+BOOTLOADER    = $(BUILD_ROOT)module_tester_bootloader.hex
 
 bootstrap_all:	$(FIRMWARE) $(BOOTLOADER)
 		make -f bootloader/makefile fuses
 		$(AVRDUDE) -B 1 $(AVRDUDE_COM_OPTS) $(AVRDUDE_ISP_OPTS) \
 			-U flash:w:$(FIRMWARE):i -U flash:w:$(BOOTLOADER):i \
 			-U lock:w:0x2f:m
+
+build_all:
+		make -f bootloader/makefile
+		make -f module_tester/makefile

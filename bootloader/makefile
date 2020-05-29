@@ -24,5 +24,3 @@ HFUSE          = d6
 EFUSE          = fd
 
 include avrlib/makefile.mk
-
-include $(DEP_FILE)
